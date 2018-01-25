@@ -3,7 +3,7 @@ describe("About Higher Order Functions pt 2", function () {
   it("should use filter to select array elements that meet a criteria", function () {
     // return a filer people over 40
     var people = [{name: "name", age: 41}, {name: "name", age: 22},{name: "name", age: 47},{name: "name", age: 35}];
-    var peopleOverFourty = people.filter(function (x) {/* FILL ME IN */});
+    var peopleOverFourty = people.filter(function (x) { if(x.age >40) return true; else return false;});
 
     expect(peopleOverFourty).toEqual([{name: "name", age: 41}, {name: "name", age: 47}]);
   });
@@ -85,7 +85,7 @@ describe("About Higher Order Functions pt 2", function () {
 
   it("should write a function that turns an array of numbers into an array with just two numbers. The first will be the count of all the negative numbers, the second the sum of all positive numbers", function(){
     //For Example: countOfPositveAndSumOfNegatives([-1,-2,3,4]) === [2,7]
-    //There are two negative numbres and 3+4 =7 
+    //There are two negative numbres and 3+4 =7
 
     var countOfPositveAndSumOfNegatives = function(arr) {
       return "FILL ME IN";
@@ -164,7 +164,7 @@ describe("About Higher Order Functions pt 2", function () {
     expect(binaryToNumber([0,0,1,1,1,1])).toEqual(15);
     expect(binaryToNumber([1,0,1,1])).toEqual(11);
   });
-  
+
   it("can write your own filter function", function() {
     var myFilter = function(arr, func){
       /* FILL ME IN */
@@ -173,7 +173,7 @@ describe("About Higher Order Functions pt 2", function () {
 
     expect(myFilter([1,2,3], (i) => i > 2)).toEqual([3]);
   });
-  
+
   it("can write your own map function", function() {
     var myMap = function(arr, func){
       /* FILL ME IN */
