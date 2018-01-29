@@ -11,7 +11,7 @@ describe("About Higher Order Functions pt 2", function () {
   it("should use map to transform elements in an array into a new array", function () {
     // return a list of everyone's name
     var people = [{name: "name", age: 41}, {name: "name", age: 22},{name: "name", age: 47}];
-    var names = people.map(function(x) { /* FILL ME IN */});
+    var names = people.map(function(x) {return x.age});
 
     expect(names).toEqual([41, 22, 47]);
   });
@@ -19,7 +19,7 @@ describe("About Higher Order Functions pt 2", function () {
   it("should use 'reduce' to combine elements in an array into a new value", function () {
     // sum these numbers
     var numbers = [1, 2, 3];
-    var reduction = numbers.reduce(function(acc, n) { /* FILL ME IN */}, 0);
+    var reduction = numbers.reduce(function(acc, n) {return acc + n}, 0);
 
     expect(reduction).toBe(6);
   });
@@ -31,11 +31,17 @@ describe("About Higher Order Functions pt 2", function () {
       {name: "Aundrea", dancing: 8, performing: 5}, {name: "Aubrey", dancing: 8, performing: 6, otherObligations: ''},  {name: "Robert", dancing: 7, performing: 9} ];
 
     // filter out band members who have dancing skill 3 or less
-    var afterRoundOne = bandMembers.filter( /* FILL ME IN */ );
+    var afterRoundOne = bandMembers.filter (function(x) {return x.dancing > 3});
     expect(afterRoundOne.length).toEqual(8);
 
     // Remove band members who have otherObligations (only filter members who have the 'otherObligations' property AND have some value in that property, not an empty string)
-    var afterRoundTwo = afterRoundOne.filter( /* FILL ME IN */ );
+    var afterRoundTwo = afterRoundOne.filter (function(x) {
+      if (x.hasOwnProperty ("otherObligations") && x.otherObligations !== "null" && x.otherObligations.length > 1) {
+      return false;
+    } else {
+    return true
+    }
+  });
     expect(afterRoundTwo.length).toEqual(6);
   });
 
@@ -44,7 +50,7 @@ describe("About Higher Order Functions pt 2", function () {
                        {name: "Aundrea", dancing: 8, performing: 5, otherObligations: "Something"}, {name: "Aubrey", dancing: 8, performing: 6, otherObligations: ''},  {name: "Robert", dancing: 7, performing: 9}];
 
     // Transform bandMembers into list containing the length of each band member's name
-    var nameLengths = bandMembers.map( /* FILL ME IN */ );
+    var nameLengths = bandMembers.map(function(x) {return x.length});
     expect(nameLengths.length).toEqual(6);
     expect(nameLengths).toEqual([5, 7, 7, 7, 6, 6]);
 
