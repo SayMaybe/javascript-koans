@@ -36,7 +36,7 @@ describe("About Higher Order Functions pt 2", function () {
 
     // Remove band members who have otherObligations (only filter members who have the 'otherObligations' property AND have some value in that property, not an empty string)
     var afterRoundTwo = afterRoundOne.filter (function(x) {
-      if (x.hasOwnProperty ("otherObligations") && x.otherObligations !== "null" && x.otherObligations.length > 1) {
+      if (x.hasOwnProperty ("otherObligations") && x.otherObligations !== null && x.otherObligations.length > 1) {
       return false;
     } else {
     return true
@@ -50,13 +50,19 @@ describe("About Higher Order Functions pt 2", function () {
                        {name: "Aundrea", dancing: 8, performing: 5, otherObligations: "Something"}, {name: "Aubrey", dancing: 8, performing: 6, otherObligations: ''},  {name: "Robert", dancing: 7, performing: 9}];
 
     // Transform bandMembers into list containing the length of each band member's name
-    var nameLengths = bandMembers.map(function(x) {return x.length});
+    var nameLengths = bandMembers.map(function(x) {return x.name.length});
     expect(nameLengths.length).toEqual(6);
     expect(nameLengths).toEqual([5, 7, 7, 7, 6, 6]);
 
     // Transform bandMembers into a list of names and each members strength
     // for example "Brian: dancer" or "Aubrey: performer"
-    var names = bandMembers.map( /* FILL ME IN */ );
+    var names = bandMembers.map(function(x) {
+      if(x.dancing > x.performing){
+      return x.name + ":"+"dancer"
+    }else {
+      return x.name + ":"+"performer"
+        }
+      });
     expect(names).toEqual(["Brian: dancer", "Kristen: dancer", "Bethany: dancer", "Aundrea: dancer", "Aubrey: dancer", "Robert: performer"]);
     expect(names.length).toEqual(6);
 
