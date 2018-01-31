@@ -69,8 +69,8 @@ describe("About Higher Order Functions pt 2", function () {
     // Map over all of the band members and return a html string that contains each person's names, dancing skill, performing skill
     // The first element should be a string equal to this: "<div>Name: Donnie <br> Dancing: 3 <br> Performing: 5 </div>"
     var profiles = bandMembers.map(function(x) {
-      return <div>"Name:" + &{bandMembers[0].name} <br> + "Dancing:" + ${bandMembers[0].dancing} <br> +
-    } /* FILL ME IN */);
+      return "<div> Name: " + x.name + "<br>" +  "Dancing: " + x.dancing + "<br> Performing: " + x.performing + "</div>"
+    });
     expect(profiles.length).toEqual(6);
     expect(profiles[0]).toEqual(`<div>Name: ${bandMembers[0].name} <br> Dancing: ${bandMembers[0].dancing} <br> Performing: ${bandMembers[0].performing}</div>`);
   });
@@ -206,7 +206,7 @@ describe("About Higher Order Functions pt 2", function () {
     expect(myReduce([1,2,3], ((acc, i) => acc + i), 0)).toEqual(6);
   });
 
-});
+
 
 it("can add some html to the page", function () {
   /* create your own list of names and images it will be turned into html and displayed at the bottom of the page!*/
@@ -225,4 +225,5 @@ it("can add some html to the page", function () {
     outerList.append(el);
   });
   document.body.getElementsByClassName("banner")[0].append( outerList);
+});
 });
