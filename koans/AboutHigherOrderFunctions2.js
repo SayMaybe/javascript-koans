@@ -39,7 +39,7 @@ describe("About Higher Order Functions pt 2", function () {
       if (x.hasOwnProperty ("otherObligations") && x.otherObligations !== null && x.otherObligations.length > 1) {
       return false;
     } else {
-    return true
+    return true;
     }
   });
     expect(afterRoundTwo.length).toEqual(6);
@@ -58,9 +58,9 @@ describe("About Higher Order Functions pt 2", function () {
     // for example "Brian: dancer" or "Aubrey: performer"
     var names = bandMembers.map(function(x) {
       if(x.dancing > x.performing){
-      return x.name + ":"+"dancer"
+      return x.name +":" + " dancer"
     }else {
-      return x.name + ":"+"performer"
+      return x.name +":" + " performer"
         }
       });
     expect(names).toEqual(["Brian: dancer", "Kristen: dancer", "Bethany: dancer", "Aundrea: dancer", "Aubrey: dancer", "Robert: performer"]);
@@ -68,7 +68,9 @@ describe("About Higher Order Functions pt 2", function () {
 
     // Map over all of the band members and return a html string that contains each person's names, dancing skill, performing skill
     // The first element should be a string equal to this: "<div>Name: Donnie <br> Dancing: 3 <br> Performing: 5 </div>"
-    var profiles = bandMembers.map( /* FILL ME IN */);
+    var profiles = bandMembers.map(function(x) {
+      return <div>"Name:" + &{bandMembers[0].name} <br> + "Dancing:" + ${bandMembers[0].dancing} <br> +
+    } /* FILL ME IN */);
     expect(profiles.length).toEqual(6);
     expect(profiles[0]).toEqual(`<div>Name: ${bandMembers[0].name} <br> Dancing: ${bandMembers[0].dancing} <br> Performing: ${bandMembers[0].performing}</div>`);
   });
