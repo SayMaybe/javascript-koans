@@ -58,9 +58,9 @@ describe("About Higher Order Functions pt 2", function () {
     // for example "Brian: dancer" or "Aubrey: performer"
     var names = bandMembers.map(function(x) {
       if(x.dancing > x.performing){
-      return x.name + ":"+"dancer"
+      return x.name + ":" + " dancer"
     }else {
-      return x.name + ":"+"performer"
+      return x.name + ":" + " performer"
         }
       });
     expect(names).toEqual(["Brian: dancer", "Kristen: dancer", "Bethany: dancer", "Aundrea: dancer", "Aubrey: dancer", "Robert: performer"]);
