@@ -26,9 +26,9 @@ describe("About Higher Order Functions pt 2", function () {
 
   it("should make the band", function() {
     var bandMembers = [{name: "Donnie", dancing: 3, performing: 5}, {name: "Paschan" ,dancing: 1, performing: 9},  {name: "Celeste", dancing: 3, performing: 4},
-      {name: "DeAngelo", dancing: 7, performing: 7, otherObligations: 'soloAspirations'}, {name: "Leslie" ,dancing: 6, performing: 8, otherObligations: 'is a student'},
-      {name: "Brian", dancing: 6, performing: 5, otherObligations: null}, {name: "Kristen" ,dancing: 7, performing: 4},  {name: "Bethany", dancing: 6, performing: 5},
-      {name: "Aundrea", dancing: 8, performing: 5}, {name: "Aubrey", dancing: 8, performing: 6, otherObligations: ''},  {name: "Robert", dancing: 7, performing: 9} ];
+    {name: "DeAngelo", dancing: 7, performing: 7, otherObligations: 'soloAspirations'}, {name: "Leslie" ,dancing: 6, performing: 8, otherObligations: 'is a student'},
+    {name: "Brian", dancing: 6, performing: 5, otherObligations: null}, {name: "Kristen" ,dancing: 7, performing: 4},  {name: "Bethany", dancing: 6, performing: 5},
+    {name: "Aundrea", dancing: 8, performing: 5}, {name: "Aubrey", dancing: 8, performing: 6, otherObligations: ''},  {name: "Robert", dancing: 7, performing: 9} ];
 
     // filter out band members who have dancing skill 3 or less
     var afterRoundOne = bandMembers.filter (function(x) {return x.dancing > 3});
@@ -37,17 +37,17 @@ describe("About Higher Order Functions pt 2", function () {
     // Remove band members who have otherObligations (only filter members who have the 'otherObligations' property AND have some value in that property, not an empty string)
     var afterRoundTwo = afterRoundOne.filter (function(x) {
       if (x.hasOwnProperty ("otherObligations") && x.otherObligations !== null && x.otherObligations.length > 1) {
-      return false;
-    } else {
-    return true;
-    }
-  });
+        return false;
+      } else {
+        return true;
+      }
+    });
     expect(afterRoundTwo.length).toEqual(6);
   });
 
   it("should make the band 2", function() {
     var bandMembers = [{name: "Brian", dancing: 6, performing: 5, otherObligations: null}, {name: "Kristen" ,dancing: 7, performing: 4},  {name: "Bethany", dancing: 6, performing: 5},
-                       {name: "Aundrea", dancing: 8, performing: 5, otherObligations: "Something"}, {name: "Aubrey", dancing: 8, performing: 6, otherObligations: ''},  {name: "Robert", dancing: 7, performing: 9}];
+    {name: "Aundrea", dancing: 8, performing: 5, otherObligations: "Something"}, {name: "Aubrey", dancing: 8, performing: 6, otherObligations: ''},  {name: "Robert", dancing: 7, performing: 9}];
 
     // Transform bandMembers into list containing the length of each band member's name
     var nameLengths = bandMembers.map(function(x) {return x.name.length});
@@ -58,11 +58,11 @@ describe("About Higher Order Functions pt 2", function () {
     // for example "Brian: dancer" or "Aubrey: performer"
     var names = bandMembers.map(function(x) {
       if(x.dancing > x.performing){
-      return x.name + ":" + " dancer"
-    }else {
-      return x.name + ":" + " performer"
-        }
-      });
+        return x.name + ":" + " dancer"
+      }else {
+        return x.name + ":" + " performer"
+      }
+    });
     expect(names).toEqual(["Brian: dancer", "Kristen: dancer", "Bethany: dancer", "Aundrea: dancer", "Aubrey: dancer", "Robert: performer"]);
     expect(names.length).toEqual(6);
 
@@ -77,134 +77,137 @@ describe("About Higher Order Functions pt 2", function () {
 
   it("should make the band 3", function() {
     var bandMembers = [{name: "Brian", dancing: 6, performing: 5, otherObligations: null}, {name: "Kristen" ,dancing: 7, performing: 4},  {name: "Bethany", dancing: 6, performing: 5},
-                       {name: "Aundrea", dancing: 8, performing: 5, otherObligations: "Something"}, {name: "Aubrey", dancing: 8, performing: 6, otherObligations: ''},  {name: "Robert", dancing: 7, performing: 9}];
+    {name: "Aundrea", dancing: 8, performing: 5, otherObligations: "Something"}, {name: "Aubrey", dancing: 8, performing: 6, otherObligations: ''},  {name: "Robert", dancing: 7, performing: 9}];
 
     // reduce bandMembers to get the sum of all dancing properties
-    var totalDancingSkillLeft = bandMembers.reduce( /* FILL ME IN */ );
-    expect(totalDancingSkillLeft).toEqual(42);
+    var totalDancingSkillLeft = bandMembers.reduce(function(acc, x) {return acc + x}, 0);
 
-    // reduce bandMembers to get the sum of all performing properties
-    var totalPerformingSkillLeft = bandMembers.reduce( /* FILL ME IN */);
-    expect(totalPerformingSkillLeft).toEqual(34);
 
-    // What was the highest performer and highest dancer score?
-    // use reduce to create an object with two properties 'maxPerform' and 'maxDance'
-    // 'maxPerform' should contain the highest perform score and 'maxDance' the highest dance score out of all the members
-    // Hint: the initial value passed to reduce will be an object
-    var bestPerformAndDance = bandMembers.reduce( (best, m) => {
-      /* FILL ME IN */
-    },{maxPerform: 0, maxDance: 0});
-    expect(bestPerformAndDance).toEqual({maxPerform: 9, maxDance: 8});
   });
+  expect(totalDancingSkillLeft).toEqual(42);
 
-  it("should write a function that turns an array of numbers into an array with just two numbers. The first will be the count of all the negative numbers, the second the sum of all positive numbers", function(){
-    //For Example: countOfPositveAndSumOfNegatives([-1,-2,3,4]) === [2,7]
-    //There are two negative numbres and 3+4 =7
+  // reduce bandMembers to get the sum of all performing properties
+  var totalPerformingSkillLeft = bandMembers.reduce( /* FILL ME IN */);
+  expect(totalPerformingSkillLeft).toEqual(34);
 
-    var countOfPositveAndSumOfNegatives = function(arr) {
-      return "FILL ME IN";
-    };
+  // What was the highest performer and highest dancer score?
+  // use reduce to create an object with two properties 'maxPerform' and 'maxDance'
+  // 'maxPerform' should contain the highest perform score and 'maxDance' the highest dance score out of all the members
+  // Hint: the initial value passed to reduce will be an object
+  var bestPerformAndDance = bandMembers.reduce(function (best, m) => {
+    /* FILL ME IN */
+  },{maxPerform: 0, maxDance: 0});//parameters
+  expect(bestPerformAndDance).toEqual({maxPerform: 9, maxDance: 8});
 
-    var numbers = [-1,-2,-3,-4,0,3,5,2,5];
-    expect(countOfPositveAndSumOfNegatives(numbers)).toEqual([4, 15]);
-  });
 
-  it("should write a function that finds the difference between two arrays", function () {
-    // implement a difference function for lists, which subtracts one list from another.
-    // It should remove all values from list a, which are present in list b.
-    // arrayDiff([1,2],[1]) == [2]
-    // arrayDiff([1,2,2,2,3],[2]) == [1,3]
+it("should write a function that turns an array of numbers into an array with just two numbers. The first will be the count of all the negative numbers, the second the sum of all positive numbers", function(){
+  //For Example: countOfPositveAndSumOfNegatives([-1,-2,3,4]) === [2,7]
+  //There are two negative numbres and 3+4 =7
 
-    var arrayDiff = function(array1, array2) {
-      return "FILL ME IN";
-    };
+  var countOfPositveAndSumOfNegatives = function(arr) {
+    return "FILL ME IN";
+  };
 
-    expect(arrayDiff([1,2,3], [1,2])).toEqual([3]);
-    expect(arrayDiff([1,2,2,2,3], [2])).toEqual([1,3]);
-  });
+  var numbers = [-1,-2,-3,-4,0,3,5,2,5];
+  expect(countOfPositveAndSumOfNegatives(numbers)).toEqual([4, 15]);
+});
 
-  it("should write a function to capitalize every word in a string", function(){
-    // Jaden Smith, the son of Will Smith, is the star of films such as The Karate Kid (2010) and After Earth (2013). Jaden is also known for some of his philosophy that he delivers via Twitter. When writing on Twitter, he is known for almost always capitalizing every word.
+it("should write a function that finds the difference between two arrays", function () {
+  // implement a difference function for lists, which subtracts one list from another.
+  // It should remove all values from list a, which are present in list b.
+  // arrayDiff([1,2],[1]) == [2]
+  // arrayDiff([1,2,2,2,3],[2]) == [1,3]
 
-    // Your task is to convert strings to how they would be written by Jaden Smith. The strings are actual quotes from Jaden Smith, but they are not capitalized in the same way he originally typed them.
+  var arrayDiff = function(array1, array2) {
+    return "FILL ME IN";
+  };
 
-    // Example:
-    // Not Jaden-Cased: "How can mirrors be real if our eyes aren't real"
-    // Jaden-Cased:     "How Can Mirrors Be Real If Our Eyes Aren't Real"
+  expect(arrayDiff([1,2,3], [1,2])).toEqual([3]);
+  expect(arrayDiff([1,2,2,2,3], [2])).toEqual([1,3]);
+});
 
-    // Hint:
-    // First split the string into a list of words
-    // Map over each word
-    // turn the array back into a string
+it("should write a function to capitalize every word in a string", function(){
+  // Jaden Smith, the son of Will Smith, is the star of films such as The Karate Kid (2010) and After Earth (2013). Jaden is also known for some of his philosophy that he delivers via Twitter. When writing on Twitter, he is known for almost always capitalizing every word.
 
-    var jadenCase = function(string){
-      return "FILL ME IN";
-    };
+  // Your task is to convert strings to how they would be written by Jaden Smith. The strings are actual quotes from Jaden Smith, but they are not capitalized in the same way he originally typed them.
 
-    expect(jadenCase("How can mirrors be real if our eyes aren't real")).toEqual("How Can Mirrors Be Real If Our Eyes Aren't Real");
-  });
+  // Example:
+  // Not Jaden-Cased: "How can mirrors be real if our eyes aren't real"
+  // Jaden-Cased:     "How Can Mirrors Be Real If Our Eyes Aren't Real"
 
-  it("should use reduce to sum all odd numbers in an array", function(){
-    var numbers = [1,2,3,4,5,6,7,8,9];
-    var sumOfOdds = numbers.reduce(function(acc, n){
-      /* FILL ME IN */
-    }, 0);
-    expect(sumOfOdds).toEqual(1+3+5+7+9);
-  });
+  // Hint:
+  // First split the string into a list of words
+  // Map over each word
+  // turn the array back into a string
 
-  // These last 5 questions are for extra fun but not part of the required assignment
-  it("use reduce to convert a binary representation of a number (array of 0s and 1s) into that number in base 10", function() {
-    // Given an array of one's and zero's convert the equivalent binary value to an integer.
-    // Eg: [0, 0, 0, 1] is treated as 0001 which is the binary representation of 1
+  var jadenCase = function(string){
+    return "FILL ME IN";
+  };
 
-    // Examples:
-    // Testing: [0, 0, 1] ==> 1
-    // Testing: [0, 0, 0, 1, 0] ==> 2
-    // Testing: [0, 1, 0, 1] ==> 5
-    // Testing: [0, 1, 1, 0] ==> 6
-    // Testing: [0, 0, 1, 1, 1, 1] ==> 15
-    // Testing: [1, 0, 1, 1] ==> 11
+  expect(jadenCase("How can mirrors be real if our eyes aren't real")).toEqual("How Can Mirrors Be Real If Our Eyes Aren't Real");
+});
 
-    // hint: the callback for reduce will have an optional argument for the index of the current item
+it("should use reduce to sum all odd numbers in an array", function(){
+  var numbers = [1,2,3,4,5,6,7,8,9];
+  var sumOfOdds = numbers.reduce(function(acc, n){
+    /* FILL ME IN */
+  }, 0);
+  expect(sumOfOdds).toEqual(1+3+5+7+9);
+});
 
-    var binaryToNumber = function(array) {
-      /* FILL ME IN */
-    };
+// These last 5 questions are for extra fun but not part of the required assignment
+it("use reduce to convert a binary representation of a number (array of 0s and 1s) into that number in base 10", function() {
+  // Given an array of one's and zero's convert the equivalent binary value to an integer.
+  // Eg: [0, 0, 0, 1] is treated as 0001 which is the binary representation of 1
 
-    expect(binaryToNumber([0,0,1])).toEqual(1);
-    expect(binaryToNumber([0,0,0,1,0])).toEqual(2);
-    expect(binaryToNumber([0,1,0,1])).toEqual(5);
-    expect(binaryToNumber([0,1,1,0])).toEqual(6);
-    expect(binaryToNumber([0,0,1,1,1,1])).toEqual(15);
-    expect(binaryToNumber([1,0,1,1])).toEqual(11);
-  });
+  // Examples:
+  // Testing: [0, 0, 1] ==> 1
+  // Testing: [0, 0, 0, 1, 0] ==> 2
+  // Testing: [0, 1, 0, 1] ==> 5
+  // Testing: [0, 1, 1, 0] ==> 6
+  // Testing: [0, 0, 1, 1, 1, 1] ==> 15
+  // Testing: [1, 0, 1, 1] ==> 11
 
-  it("can write your own filter function", function() {
-    var myFilter = function(arr, func){
-      /* FILL ME IN */
-      return arr;
-    };
+  // hint: the callback for reduce will have an optional argument for the index of the current item
 
-    expect(myFilter([1,2,3], (i) => i > 2)).toEqual([3]);
-  });
+  var binaryToNumber = function(array) {
+    /* FILL ME IN */
+  };
 
-  it("can write your own map function", function() {
-    var myMap = function(arr, func){
-      /* FILL ME IN */
-      return arr;
-    };
+  expect(binaryToNumber([0,0,1])).toEqual(1);
+  expect(binaryToNumber([0,0,0,1,0])).toEqual(2);
+  expect(binaryToNumber([0,1,0,1])).toEqual(5);
+  expect(binaryToNumber([0,1,1,0])).toEqual(6);
+  expect(binaryToNumber([0,0,1,1,1,1])).toEqual(15);
+  expect(binaryToNumber([1,0,1,1])).toEqual(11);
+});
 
-    expect(myMap([1,2,3], (i) => i + 2)).toEqual([3,4,5]);
-  });
+it("can write your own filter function", function() {
+  var myFilter = function(arr, func){
+    /* FILL ME IN */
+    return arr;
+  };
 
-  it("can write your own reduce function", function() {
-    var myReduce = function(arr, func, initial){
-      /* FILL ME IN */
-      return arr;
-    };
+  expect(myFilter([1,2,3], (i) => i > 2)).toEqual([3]);
+});
 
-    expect(myReduce([1,2,3], ((acc, i) => acc + i), 0)).toEqual(6);
-  });
+it("can write your own map function", function() {
+  var myMap = function(arr, func){
+    /* FILL ME IN */
+    return arr;
+  };
+
+  expect(myMap([1,2,3], (i) => i + 2)).toEqual([3,4,5]);
+});
+
+it("can write your own reduce function", function() {
+  var myReduce = function(arr, func, initial){
+    /* FILL ME IN */
+    return arr;
+  };
+
+  expect(myReduce([1,2,3], ((acc, i) => acc + i), 0)).toEqual(6);
+});
 
 
 
